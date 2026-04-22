@@ -6,6 +6,8 @@
 
 Built with **React 18**, **Redux Toolkit**, **Vite**, and **Tailwind CSS**
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-FootKick-brightgreen?style=for-the-badge&logo=github)](https://dsushant717.github.io/FootKick/)
+
 </div>
 
 ---
