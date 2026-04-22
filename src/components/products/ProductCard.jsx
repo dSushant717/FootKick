@@ -1,3 +1,6 @@
+// Phase 2 – Reusable product card used in the product listing grid.
+// Clicking the card navigates to the product detail page (onSelect).
+// The quick-add button adds the item to the cart without leaving the grid.
 import { Star, ShoppingBag, Plus } from 'lucide-react'
 import { useAppDispatch } from '../../store/hooks.js'
 import { addToCart } from '../../store/slices/cartSlice.js'
@@ -5,12 +8,14 @@ import { addToCart } from '../../store/slices/cartSlice.js'
 export default function ProductCard({ product, onSelect }) {
   const dispatch = useAppDispatch()
 
+  // Adds the product with default size and quantity 1 without opening the detail page
   const handleQuickAdd = (e) => {
-    e.stopPropagation()
+    e.stopPropagation() // prevent card click from also firing
     if (!product.inStock) return
     dispatch(addToCart({ product, quantity: 1, selectedSize: product.sizes?.[0] }))
   }
 
+  // Calculate % discount to show the sale badge
   const discount = product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : 0
@@ -22,9 +27,23 @@ export default function ProductCard({ product, onSelect }) {
                  hover:border-brand-500/50 transition-all duration-300 cursor-pointer
                  hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-0.5"
     >
-      {/* Image / Emoji area */}
+      {/* Image area */}
       <div className="relative aspect-square bg-surface-800 flex items-center justify-center overflow-hidden">
-        <span className="text-7xl select-none transition-transform duration-300 group-hover:scale-110">
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none'
+              e.currentTarget.nextElementSibling.style.display = 'flex'
+            }}
+          />
+        ) : null}
+        <span
+          className="text-7xl select-none transition-transform duration-300 group-hover:scale-110"
+          style={{ display: product.image ? 'none' : 'flex' }}
+        >
           {product.emoji}
         </span>
 

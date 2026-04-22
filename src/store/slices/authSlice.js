@@ -1,3 +1,6 @@
+// Phase 5 – Auth slice stores the currently logged-in user and authentication status.
+// isAuthenticated is checked in App.jsx to guard the checkout route —
+// unauthenticated users are redirected to the login page first.
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {

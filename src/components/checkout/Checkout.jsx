@@ -264,8 +264,21 @@ export default function Checkout({ onBack, onComplete }) {
             <div className="space-y-3 mb-5 max-h-56 overflow-y-auto pr-1">
               {items.map((item, idx) => (
                 <div key={`${item.product.id}-${item.selectedSize}-${idx}`} className="flex gap-3">
-                  <div className="w-12 h-12 shrink-0 bg-surface-800 rounded-lg flex items-center justify-center text-2xl">
-                    {item.product.emoji}
+                  <div className="w-12 h-12 shrink-0 bg-surface-800 rounded-lg overflow-hidden flex items-center justify-center">
+                    {item.product.image ? (
+                      <img
+                        src={item.product.image}
+                        alt={item.product.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                          e.currentTarget.nextElementSibling.style.display = 'flex'
+                        }}
+                      />
+                    ) : null}
+                    <span className="text-2xl" style={{ display: item.product.image ? 'none' : 'flex' }}>
+                      {item.product.emoji}
+                    </span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-surface-200 truncate">{item.product.name}</p>

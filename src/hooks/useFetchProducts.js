@@ -1,27 +1,27 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/hooks.js'
 import { setLoading, loadProducts } from '../store/slices/productsSlice.js'
+import { initialProducts } from '../store/slices/productsSlice.js'
 
-// Phase 4 – custom hook using useEffect to simulate fetching products
-// In a real app this would call an API; here we re-load the static data
-// after a short simulated network delay so the loading state is visible.
+// Phase 4 – custom hook that uses useEffect to simulate fetching products from an API.
+// The Redux store starts with an empty items array; this hook dispatches the data
+// after a short delay to mimic a real network request.
 export function useFetchProducts() {
   const dispatch = useAppDispatch()
-  const { items, isLoading } = useAppSelector((state) => state.products)
+  const { isLoading } = useAppSelector((state) => state.products)
 
   useEffect(() => {
-    // Only "fetch" once (items already populated from initialState)
-    if (items.length > 0) return
-
+    // Show a loading spinner while the simulated request is in-flight
     dispatch(setLoading(true))
 
+    // Simulate async API call (e.g. fetch('/api/products').then(r => r.json()))
     const timer = setTimeout(() => {
-      // In production you would do: fetch('/api/products').then(r => r.json())...
-      dispatch(loadProducts(items))
+      dispatch(loadProducts(initialProducts))
     }, 800)
 
+    // Cleanup: cancel the timer if the component unmounts before it fires
     return () => clearTimeout(timer)
-  }, [dispatch, items])
+  }, [dispatch])
 
   return { isLoading }
 }

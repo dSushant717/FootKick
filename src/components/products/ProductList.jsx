@@ -1,3 +1,7 @@
+// Phase 2 – Product listing page.
+// Renders a filterable, searchable grid of ProductCard components.
+// Uses useFetchProducts (Phase 4) to load data and useMemo to avoid
+// recomputing the filtered list on every unrelated re-render.
 import { useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks.js'
 import { setFilter } from '../../store/slices/productsSlice.js'
@@ -20,6 +24,7 @@ export default function ProductList({ onSelectProduct }) {
   // Phase 4 – useEffect inside this custom hook simulates async data fetching
   const { isLoading } = useFetchProducts()
 
+  // Recompute only when items, active filter, or search query changes
   const filteredProducts = useMemo(() => {
     return items.filter((p) => {
       const matchCategory = filter === 'all' || p.category === filter

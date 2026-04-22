@@ -6,6 +6,20 @@ export default function Footer({ onNavigate }) {
     { id: 'accessories', label: 'Accessories' },
   ]
 
+  const supportLinks = [
+    { id: 'contact',  label: 'Contact Us' },
+    { id: 'shipping', label: 'Shipping' },
+    { id: 'returns',  label: 'Returns' },
+    { id: 'faq',      label: 'FAQ' },
+  ]
+
+  const companyLinks = [
+    { id: 'about',   label: 'About Us' },
+    { id: 'careers', label: 'Careers' },
+    { id: 'privacy', label: 'Privacy Policy' },
+    { id: 'terms',   label: 'Terms of Service' },
+  ]
+
   return (
     <footer className="bg-surface-900 border-t border-surface-800 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -44,9 +58,16 @@ export default function Footer({ onNavigate }) {
           {/* Support */}
           <div>
             <h3 className="text-sm font-semibold mb-4">Support</h3>
-            <ul className="space-y-2 text-sm text-surface-500">
-              {['Contact Us', 'Shipping', 'Returns', 'FAQ'].map((l) => (
-                <li key={l}><button className="hover:text-surface-100 transition-colors">{l}</button></li>
+            <ul className="space-y-2">
+              {supportLinks.map((l) => (
+                <li key={l.id}>
+                  <button
+                    onClick={() => onNavigate(l.id)}
+                    className="text-sm text-surface-500 hover:text-surface-100 transition-colors"
+                  >
+                    {l.label}
+                  </button>
+                </li>
               ))}
             </ul>
           </div>
@@ -54,9 +75,16 @@ export default function Footer({ onNavigate }) {
           {/* Company */}
           <div>
             <h3 className="text-sm font-semibold mb-4">Company</h3>
-            <ul className="space-y-2 text-sm text-surface-500">
-              {['About Us', 'Careers', 'Privacy Policy', 'Terms of Service'].map((l) => (
-                <li key={l}><button className="hover:text-surface-100 transition-colors">{l}</button></li>
+            <ul className="space-y-2">
+              {companyLinks.map((l) => (
+                <li key={l.id}>
+                  <button
+                    onClick={() => onNavigate(l.id)}
+                    className="text-sm text-surface-500 hover:text-surface-100 transition-colors"
+                  >
+                    {l.label}
+                  </button>
+                </li>
               ))}
             </ul>
           </div>

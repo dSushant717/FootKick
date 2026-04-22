@@ -1,10 +1,14 @@
+// Phase 2 – Cart page component
+// Displays all items currently in the cart, allows quantity updates and removal,
+// shows an order summary with shipping/tax, and routes the user to checkout.
 import { ShoppingBag, Minus, Plus, Trash2, ArrowRight } from 'lucide-react'
 import { useCart } from '../../hooks/useCart.js'
 import { useAppSelector } from '../../store/hooks.js'
 
 export default function Cart({ onContinueShopping, onCheckout }) {
-  // Phase 4 – all cart logic encapsulated in custom hook
+  // Phase 4 – all cart logic is encapsulated in the custom useCart hook
   const { items, subtotal, shipping, tax, total, remove, update, clear } = useCart()
+  // Read auth state from Redux to decide the checkout button label (Phase 5)
   const { isAuthenticated } = useAppSelector((s) => s.auth)
 
   if (items.length === 0) {
@@ -46,9 +50,22 @@ export default function Cart({ onContinueShopping, onCheckout }) {
               key={`${item.product.id}-${item.selectedSize}-${idx}`}
               className="flex gap-4 p-4 bg-surface-900 rounded-xl border border-surface-800"
             >
-              {/* Emoji */}
-              <div className="w-20 h-20 shrink-0 bg-surface-800 rounded-lg flex items-center justify-center text-4xl">
-                {item.product.emoji}
+              {/* Product thumbnail */}
+              <div className="w-20 h-20 shrink-0 bg-surface-800 rounded-lg overflow-hidden flex items-center justify-center">
+                {item.product.image ? (
+                  <img
+                    src={item.product.image}
+                    alt={item.product.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none'
+                      e.currentTarget.nextElementSibling.style.display = 'flex'
+                    }}
+                  />
+                ) : null}
+                <span className="text-4xl" style={{ display: item.product.image ? 'none' : 'flex' }}>
+                  {item.product.emoji}
+                </span>
               </div>
 
               {/* Info */}

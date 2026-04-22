@@ -12,6 +12,14 @@ import ProductDetail from './components/products/ProductDetail.jsx'
 import Cart          from './components/cart/Cart.jsx'
 import Checkout      from './components/checkout/Checkout.jsx'
 import AuthForms     from './components/auth/AuthForms.jsx'
+import AboutUs        from './components/pages/AboutUs.jsx'
+import ContactUs      from './components/pages/ContactUs.jsx'
+import FAQ            from './components/pages/FAQ.jsx'
+import Shipping       from './components/pages/Shipping.jsx'
+import Returns        from './components/pages/Returns.jsx'
+import Careers        from './components/pages/Careers.jsx'
+import PrivacyPolicy  from './components/pages/PrivacyPolicy.jsx'
+import TermsOfService from './components/pages/TermsOfService.jsx'
 
 /*
  * Pages controlled by useState – Phase 1 & 2
@@ -102,6 +110,30 @@ export default function App() {
             onComplete={() => handleNavigate('products')}
           />
         )
+
+      case 'about':
+        return <AboutUs onNavigate={handleNavigate} />
+
+      case 'contact':
+        return <ContactUs />
+
+      case 'faq':
+        return <FAQ />
+
+      case 'shipping':
+        return <Shipping />
+
+      case 'returns':
+        return <Returns />
+
+      case 'careers':
+        return <Careers />
+
+      case 'privacy':
+        return <PrivacyPolicy />
+
+      case 'terms':
+        return <TermsOfService />
 
       case 'login':
         return (

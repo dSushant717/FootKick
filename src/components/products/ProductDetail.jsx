@@ -37,7 +37,23 @@ export default function ProductDetail({ product, onBack, onGoToCart }) {
         {/* ── Image panel ── */}
         <div className="relative aspect-square bg-surface-800 rounded-2xl flex items-center justify-center
                         border border-surface-700 overflow-hidden">
-          <span className="text-[8rem] select-none">{product.emoji}</span>
+          {product.image ? (
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none'
+                e.currentTarget.nextElementSibling.style.display = 'flex'
+              }}
+            />
+          ) : null}
+          <span
+            className="text-[8rem] select-none"
+            style={{ display: product.image ? 'none' : 'flex' }}
+          >
+            {product.emoji}
+          </span>
 
           {discount > 0 && (
             <div className="absolute top-4 left-4 bg-brand-500 text-white px-3 py-1 text-sm font-bold rounded-lg">

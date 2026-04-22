@@ -5,11 +5,10 @@ import { setSearchQuery } from '../../store/slices/productsSlice.js'
 import { logout } from '../../store/slices/authSlice.js'
 
 const NAV_ITEMS = [
-  { id: 'products',    label: 'All' },
-  { id: 'jerseys',     label: 'Jerseys' },
-  { id: 'boots',       label: 'Boots' },
-  { id: 'balls',       label: 'Balls' },
-  { id: 'accessories', label: 'Accessories' },
+  { id: 'about',    label: 'About Us' },
+  { id: 'faq',      label: 'FAQ' },
+  { id: 'shipping', label: 'Shipping' },
+  { id: 'contact',  label: 'Contact Us' },
 ]
 
 export default function Header({ currentPage, onNavigate }) {
@@ -34,8 +33,7 @@ export default function Header({ currentPage, onNavigate }) {
     setMobileOpen(false)
   }
 
-  const isActive = (id) =>
-    currentPage === id || (id === 'products' && currentPage === 'products')
+  const isActive = (id) => currentPage === id
 
   return (
     <header className="sticky top-0 z-50 bg-surface-900/95 backdrop-blur border-b border-surface-800">

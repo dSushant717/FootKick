@@ -1,112 +1,263 @@
-# FootKick ⚽ – E-commerce Frontend Application
+<div align="center">
 
-A full-featured football gear e-commerce app built with **React + Vite**, **Redux Toolkit**, and **Tailwind CSS**.
+# ⚽ FootKick
+
+### Premium Football Gear — E-commerce Frontend Application
+
+Built with **React 18**, **Redux Toolkit**, **Vite**, and **Tailwind CSS**
+
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
+![Redux](https://img.shields.io/badge/Redux_Toolkit-2.x-764ABC?style=flat-square&logo=redux)
+![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=flat-square&logo=vite)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-3.x-38BDF8?style=flat-square&logo=tailwindcss)
+
+</div>
 
 ---
 
-## Project Overview
+## 📋 Project Overview
 
-FootKick is a single-page e-commerce application for premium football equipment.  
-Users can browse products by category, view detailed product pages, manage a shopping cart, and complete a two-step checkout — with authentication required to proceed to payment.
+FootKick is a fully responsive, single-page e-commerce application for premium football equipment. It was built as a multi-phase frontend project demonstrating professional React development patterns — from basic component design through to global state management, custom hooks, protected routes, and a complete multi-step checkout experience.
+
+Users can browse a catalogue of 12 real products across four categories, filter and search in real time, view detailed product pages, manage a shopping cart, and complete a two-step checkout — with authentication required before payment.
+
+The application includes a full site structure with navigable pages for About Us, FAQ, Shipping Policy, Returns, Careers, Privacy Policy, and Terms of Service — all styled to match the dark theme.
 
 ---
 
-## Setup & Run Instructions
+## 📸 Screenshots
+
+### Home — Product Listing
+![Home — Product Listing](./images/home-page.png)
+
+
+
+&nbsp;
+
+### Product Detail Page
+![Home — Product Listing](./images/product-page.png)
+
+
+&nbsp;
+
+### Shopping Cart
+![Home — Product Listing](./images/cart-page.png)
+
+
+&nbsp;
+
+### Checkout Flow
+![Home — Product Listing](./images/checkout-1-page.png)
+![Home — Product Listing](./images/checkout-2-page.png)
+
+
+&nbsp;
+
+### Login / Register
+![Home — Product Listing](./images/login-page.png)
+
+
+---
+
+## ✨ Features
+
+### 🛍️ Shopping Experience
+- Browse **12 real products** across Jerseys, Boots, Balls, and Accessories
+- **Category filter pills** and **live search** — results update as you type
+- **Product detail page** with size selector, quantity control, and add-to-cart
+- **Quick-add button** on each card — add to cart without leaving the grid
+- Sale badges showing calculated discount percentages
+- Out-of-stock overlay with disabled purchase controls
+- Real product photography (locally hosted images)
+
+### 🛒 Cart & Checkout
+- Add, remove, and update item quantities from the cart
+- Same product in different sizes treated as separate entries
+- Automatic **shipping calculation** (free over $100) and **8% tax**
+- **Two-step checkout**: Shipping Information → Payment Details
+- Form pre-filled with logged-in user's name and email
+- Simulated payment processing with loading state and order confirmation
+
+### 🔐 Authentication
+- Register and Login forms with client-side validation
+- Auth state managed globally via Redux
+- **Checkout is protected** — unauthenticated users are redirected to Login, then forwarded directly to Checkout after signing in
+- User name displayed in the header when logged in; logout clears session
+
+### 📄 Site Pages (Fully Navigable)
+| Page | Description |
+|---|---|
+| Product Listing | Filterable, searchable product grid |
+| Product Detail | Full product view with size/quantity selectors |
+| Cart | Item management and order summary |
+| Checkout | Two-step shipping and payment form |
+| About Us | Company story, stats, values, and team |
+| FAQ | Accordion-style help centre across 4 categories |
+| Shipping | Delivery tiers, regional estimates, order journey |
+| Returns | 30-day return policy and step-by-step process |
+| Careers | Company perks and open job listings |
+| Privacy Policy | Full data and cookie policy |
+| Terms of Service | Site usage terms and conditions |
+| Contact Us | Contact info cards and working inquiry form |
+
+### 📱 Responsive Design
+- **Mobile-first** layout built with Tailwind CSS utility classes
+- Collapsible hamburger navigation on small screens
+- Product grid adapts: 2 columns (mobile) → 3 (tablet) → 4 (desktop)
+- Cart, Checkout, and all content pages reflow cleanly at every breakpoint
+- Sticky header with inline search on desktop; full-width search on mobile
+
+---
+
+## 🏗️ Project Structure
+
+```
+footkick/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── auth/
+│   │   │   └── AuthForms.jsx         # Login & Register forms
+│   │   ├── cart/
+│   │   │   └── Cart.jsx              # Shopping cart page
+│   │   ├── checkout/
+│   │   │   └── Checkout.jsx          # Two-step checkout
+│   │   ├── layout/
+│   │   │   ├── Header.jsx            # Sticky nav with search, cart badge & auth
+│   │   │   └── Footer.jsx            # Footer with navigable links
+│   │   ├── pages/
+│   │   │   ├── AboutUs.jsx           # Company info and team
+│   │   │   ├── Careers.jsx           # Job listings
+│   │   │   ├── ContactUs.jsx         # Contact form and info
+│   │   │   ├── FAQ.jsx               # Accordion FAQ
+│   │   │   ├── PrivacyPolicy.jsx     # Privacy policy
+│   │   │   ├── Returns.jsx           # Return policy
+│   │   │   ├── Shipping.jsx          # Shipping info and tiers
+│   │   │   └── TermsOfService.jsx    # Terms of service
+│   │   └── products/
+│   │       ├── ProductCard.jsx       # Grid card with quick-add
+│   │       ├── ProductDetail.jsx     # Full product page
+│   │       └── ProductList.jsx       # Filtered and searchable grid
+│   ├── hooks/
+│   │   ├── useCart.js                # Custom hook — cart logic
+│   │   └── useFetchProducts.js       # Custom hook — simulates API fetch
+│   ├── images/                       # Local product photography
+│   ├── store/
+│   │   ├── hooks.js                  # Typed useAppDispatch / useAppSelector
+│   │   ├── index.js                  # Redux store configuration
+│   │   └── slices/
+│   │       ├── authSlice.js          # Auth state (user, isAuthenticated)
+│   │       ├── cartSlice.js          # Cart items
+│   │       └── productsSlice.js      # Products, filter, search, selected item
+│   ├── App.jsx                       # Page routing via useState
+│   ├── index.css                     # Tailwind directives and base styles
+│   └── main.jsx                      # React root + Redux Provider
+├── index.html
+├── package.json
+├── tailwind.config.js
+└── vite.config.js
+```
+
+---
+
+## 🔧 Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| **React 18** | UI library — functional components and hooks throughout |
+| **Vite 5** | Development server and production build tool |
+| **Redux Toolkit** | Global state management (products, cart, auth) |
+| **React Redux** | Provider and `useSelector` / `useDispatch` integration |
+| **Tailwind CSS 3** | Utility-first styling and responsive design |
+| **Lucide React** | Consistent icon library |
+
+---
+
+## 🚀 Setup & Run Instructions
 
 ### Prerequisites
-- Node.js 18+ installed
-- npm or yarn
+- **Node.js 18+** installed ([nodejs.org](https://nodejs.org))
+- **npm** (comes with Node) or **yarn**
 
-### 1. Install dependencies
+### 1. Clone the repository
+```bash
+git clone https://github.com/dSushant717/footkick.git
+cd footkick
+```
+
+### 2. Install dependencies
 ```bash
 npm install
 ```
 
-### 2. Start development server
+### 3. Start the development server
 ```bash
 npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### 3. Build for production
+### 4. Build for production
 ```bash
 npm run build
 ```
 
-### 4. Preview production build
+### 5. Preview the production build
 ```bash
 npm run preview
 ```
 
 ---
 
-## Key Features
+## 📐 Development Phases
 
-| Feature | Description |
-|---|---|
-| **Product Listing** | Browse all 12 products in a responsive grid with category filter pills and live search |
-| **Product Detail** | Full-page view with size selector, quantity control, and add-to-cart with feedback |
-| **Shopping Cart** | Add / remove / update items, automatic shipping & tax calculation |
-| **Checkout** | Two-step form (Shipping → Payment) with order confirmation |
-| **Authentication** | Register / Login forms with validation; checkout is protected — unauthenticated users are redirected to login first |
-| **Redux State** | Global state managed with Redux Toolkit (products, cart, auth slices) |
-| **Custom Hooks** | `useFetchProducts` (useEffect for data loading) and `useCart` (encapsulates cart logic) |
-| **Responsive Design** | Mobile-first layout with Tailwind CSS; collapsible mobile navigation |
+This project was built incrementally across 7 structured phases:
+
+| Phase | Goal | Key Deliverables |
+|---|---|---|
+| **Phase 1** | Project Setup & Layout | Vite setup, Header/Footer, `useState` page switching |
+| **Phase 2** | Page Components | ProductList, ProductDetail, Cart, Checkout components |
+| **Phase 3** | Redux State Management | Store with `productsSlice`, `cartSlice`, `authSlice` |
+| **Phase 4** | Hooks & Side Effects | `useFetchProducts` (useEffect), `useCart` (custom hook) |
+| **Phase 5** | User Authentication | Login/Register forms, checkout auth guard |
+| **Phase 6** | Testing & Debugging | Full user flow tested, console warnings resolved |
+| **Phase 7** | Documentation & Submission | README, code comments, organised repository |
 
 ---
 
-## Project Structure
+## 🧠 State Management
+
+Redux Toolkit manages three slices of global state:
 
 ```
-src/
-├── components/
-│   ├── auth/
-│   │   └── AuthForms.jsx       # Login & Register forms (Phase 5)
-│   ├── cart/
-│   │   └── Cart.jsx            # Shopping cart page (Phase 2)
-│   ├── checkout/
-│   │   └── Checkout.jsx        # 2-step checkout (Phase 2)
-│   ├── layout/
-│   │   ├── Header.jsx          # Sticky nav with search & cart badge
-│   │   └── Footer.jsx
-│   └── products/
-│       ├── ProductCard.jsx     # Grid card with quick-add
-│       ├── ProductDetail.jsx   # Full product page (Phase 2)
-│       └── ProductList.jsx     # Filtered/searchable grid (Phase 2)
-├── hooks/
-│   ├── useFetchProducts.js     # useEffect hook – simulates API fetch (Phase 4)
-│   └── useCart.js              # Custom hook encapsulating cart logic (Phase 4)
-├── store/
-│   ├── index.js                # Redux store (Phase 3)
-│   ├── hooks.js                # useAppDispatch / useAppSelector
-│   └── slices/
-│       ├── authSlice.js        # User auth state
-│       ├── cartSlice.js        # Cart items
-│       └── productsSlice.js    # Product list, filter, search, selected product
-├── App.jsx                     # Page routing via useState (Phase 1)
-├── main.jsx                    # React root + Redux Provider
-└── index.css                   # Tailwind directives + base styles
+Redux Store
+├── products
+│   ├── items[]          — full product catalogue (loaded via useEffect)
+│   ├── selectedProduct  — product currently viewed in detail
+│   ├── filter           — active category filter ('all' | 'jerseys' | ...)
+│   ├── searchQuery      — live search string
+│   └── isLoading        — true while simulated API fetch is in-flight
+├── cart
+│   └── items[]          — { product, quantity, selectedSize }
+└── auth
+    ├── user             — { name, email } of logged-in user
+    ├── isAuthenticated  — boolean gate for checkout access
+    └── error            — login/register error message
 ```
 
 ---
 
-## Phase Checklist
+## 🪝 Custom Hooks
 
-- [x] **Phase 1** – Vite project setup, Header/Footer layout, conditional rendering with `useState`
-- [x] **Phase 2** – ProductList, ProductDetail, Cart, Checkout components with page transitions
-- [x] **Phase 3** – Redux store with `productsSlice`, `cartSlice`, `authSlice`; `useDispatch` / `useSelector` throughout
-- [x] **Phase 4** – `useState` for UI interactions (size, quantity, form fields); `useEffect` in `useFetchProducts`; custom hooks `useFetchProducts` and `useCart`
-- [x] **Phase 5** – Login/Register forms; auth state in Redux; checkout restricted to authenticated users
-- [x] **Phase 6** – Tested: product selection, cart operations (add, update, remove, clear), checkout flow, auth redirect
-- [x] **Phase 7** – README, commented code, organised repository
+### `useFetchProducts`
+Simulates loading the product catalogue from a remote API. On mount it dispatches `setLoading(true)`, waits 800 ms, then dispatches `loadProducts` with the full catalogue — making the loading spinner visible on every fresh page load.
+
+### `useCart`
+Encapsulates all cart calculations and dispatch calls. Returns `{ items, totalItems, subtotal, shipping, tax, total, add, remove, update, clear }` so any component can interact with the cart without touching Redux directly.
 
 ---
 
-## Tech Stack
+<div align="center">
 
-- **React 18** with functional components and hooks
-- **Vite 5** – fast development server and build tool
-- **Redux Toolkit** – `configureStore`, `createSlice`, `useDispatch`, `useSelector`
-- **React Redux** – Provider and hooks integration
-- **Tailwind CSS 3** – utility-first styling
-- **Lucide React** – icon library
+&copy; 2024 FootKick. All rights reserved.
+
+</div>

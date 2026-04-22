@@ -1,7 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// --- Product data ---
-const initialProducts = [
+import jerseyHome from '../../images/jersey-home.jpg'
+import jerseyAway from '../../images/jersey-away.jpg'
+import jerseyRetro from '../../images/jersey-retro.jpg'
+import bootsPredator from '../../images/boots-predator.jpg'
+import bootsPhantom from '../../images/boots-phantom.jpg'
+import bootsSpeed from '../../images/boots-speed.jpg'
+import ballMatch from '../../images/ball-match.jpg'
+import ballTraining from '../../images/ball-training.jpg'
+import glovesGoalkeeper from '../../images/gloves-goalkeeper.jpg'
+import shinGuards from '../../images/shin-guards.jpg'
+import armbandCaptain from '../../images/armband-captain.jpg'
+import bagKit from '../../images/bag-kit.jpg'
+
+// Phase 3 – Products slice manages the product catalogue, active category filter,
+// search query, selected product for the detail view, and the loading flag used
+// while useFetchProducts simulates an async API call.
+
+// Exported so useFetchProducts can simulate loading this data from an API
+export const initialProducts = [
   {
     id: 1,
     name: 'Pro Elite Home Jersey 2024',
@@ -10,6 +27,7 @@ const initialProducts = [
     description: 'Official home jersey featuring breathable Dri-FIT technology. Authentic team colors with embroidered crest. Designed for both match play and casual wear.',
     category: 'jerseys',
     emoji: '👕',
+    image: jerseyHome,
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     inStock: true,
     rating: 4.8,
@@ -23,6 +41,7 @@ const initialProducts = [
     description: 'Premium away jersey with moisture-wicking fabric. Features gold accent detailing and slim athletic fit for maximum comfort on the pitch.',
     category: 'jerseys',
     emoji: '👕',
+    image: jerseyAway,
     sizes: ['S', 'M', 'L', 'XL'],
     inStock: true,
     rating: 4.7,
@@ -36,6 +55,7 @@ const initialProducts = [
     description: 'Professional-grade boots with enhanced ball control zones. Lightweight design for maximum agility. Features reinforced toe box for powerful strikes.',
     category: 'boots',
     emoji: '👟',
+    image: bootsPredator,
     sizes: ['7', '8', '9', '10', '11', '12'],
     inStock: true,
     rating: 4.9,
@@ -49,6 +69,7 @@ const initialProducts = [
     description: 'Precision boots designed for playmakers. Features textured upper for superior first touch and close ball control in tight spaces.',
     category: 'boots',
     emoji: '👟',
+    image: bootsPhantom,
     sizes: ['7', '8', '9', '10', '11'],
     inStock: true,
     rating: 4.6,
@@ -62,6 +83,7 @@ const initialProducts = [
     description: 'FIFA Quality Pro certified match ball. 12-panel design for true flight and consistent touch. Used in professional leagues worldwide.',
     category: 'balls',
     emoji: '⚽',
+    image: ballMatch,
     sizes: null,
     inStock: true,
     rating: 4.9,
@@ -75,6 +97,7 @@ const initialProducts = [
     description: 'Durable training ball built for daily practice. Machine-stitched for consistent performance in all weather conditions.',
     category: 'balls',
     emoji: '⚽',
+    image: ballTraining,
     sizes: null,
     inStock: true,
     rating: 4.5,
@@ -88,6 +111,7 @@ const initialProducts = [
     description: 'Premium latex palm for exceptional grip in all conditions. Finger protection technology included. Breathable backhand design.',
     category: 'accessories',
     emoji: '🧤',
+    image: glovesGoalkeeper,
     sizes: ['7', '8', '9', '10', '11'],
     inStock: true,
     rating: 4.7,
@@ -101,6 +125,7 @@ const initialProducts = [
     description: 'Lightweight protection with ergonomic fit. Includes ankle guards and compression sleeve for maximum protection without bulk.',
     category: 'accessories',
     emoji: '🛡️',
+    image: shinGuards,
     sizes: ['S', 'M', 'L'],
     inStock: true,
     rating: 4.4,
@@ -114,6 +139,7 @@ const initialProducts = [
     description: 'Set of 3 captain armbands in assorted team colors. Elastic fit for comfortable wear throughout the full 90 minutes.',
     category: 'accessories',
     emoji: '💪',
+    image: armbandCaptain,
     sizes: null,
     inStock: true,
     rating: 4.3,
@@ -127,6 +153,7 @@ const initialProducts = [
     description: 'Vintage-inspired design celebrating legendary seasons. Premium cotton blend fabric for everyday comfort and nostalgic style.',
     category: 'jerseys',
     emoji: '👕',
+    image: jerseyRetro,
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     inStock: true,
     rating: 4.8,
@@ -140,6 +167,7 @@ const initialProducts = [
     description: 'Ultra-lightweight boots for speed demons. Carbon fiber plate for explosive acceleration. Knit upper for sock-like comfort.',
     category: 'boots',
     emoji: '👟',
+    image: bootsSpeed,
     sizes: ['7', '8', '9', '10', '11', '12'],
     inStock: false,
     rating: 4.5,
@@ -153,6 +181,7 @@ const initialProducts = [
     description: 'Spacious kit bag with separate boot compartment. Water-resistant material with padded shoulder strap for easy transport.',
     category: 'accessories',
     emoji: '🎒',
+    image: bagKit,
     sizes: null,
     inStock: true,
     rating: 4.6,
@@ -160,8 +189,9 @@ const initialProducts = [
   },
 ]
 
+// Items start empty — useFetchProducts hook populates them via useEffect
 const initialState = {
-  items: initialProducts,
+  items: [],
   selectedProduct: null,
   filter: 'all',
   searchQuery: '',
