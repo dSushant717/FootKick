@@ -28,33 +28,33 @@ The application includes a full site structure with navigable pages for About Us
 ## 📸 Screenshots
 
 ### Home — Product Listing
-![Home — Product Listing](./images/home-page.png)
+![Home — Product Listing](./src/images/home-page.png)
 
 
 
 &nbsp;
 
 ### Product Detail Page
-![Home — Product Listing](./images/product-page.png)
+![Product Detail Page](./src/images/product-page.png)
 
 
 &nbsp;
 
 ### Shopping Cart
-![Home — Product Listing](./images/cart-page.png)
+![Shopping Cart](./src/images/cart-page.png)
 
 
 &nbsp;
 
 ### Checkout Flow
-![Home — Product Listing](./images/checkout-1-page.png)
-![Home — Product Listing](./images/checkout-2-page.png)
+![Checkout Shipping Step](./src/images/checkout-1-page.png)
+![Checkout Payment Step](./src/images/checkout-2-page.png)
 
 
 &nbsp;
 
 ### Login / Register
-![Home — Product Listing](./images/login-page.png)
+![Login / Register](./src/images/login-page.png)
 
 
 ---
